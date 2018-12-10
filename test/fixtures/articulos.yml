@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nombre: MyString
+  propietario: MyString
+  imagen: MyString
+  descripcion: MyText
+  pedido: false
+  precio: 1.5
+  ultimoPedido: MyString
+  fechaPedido: 2018-11-19 18:25:12
+
+two:
+  nombre: MyString
+  propietario: MyString
+  imagen: MyString
+  descripcion: MyText
+  pedido: false
+  precio: 1.5
+  ultimoPedido: MyString
+  fechaPedido: 2018-11-19 18:25:12

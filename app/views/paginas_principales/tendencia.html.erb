@@ -1,0 +1,45 @@
+
+<div class = "row">
+  <div class="col offset-s1"><h1>
+<%=image_tag @tendencia.imagen.url, class: "responsive-img", style:"height: 150px; width: 150px" if @tendencia.imagen?%>
+
+&nbsp<%=@tendencia.nombre%></h1>
+</div>
+</div>
+
+<div class= "container">
+<% @elementos.each do |elemento|%>
+<div class="row">
+  <div class="col s12">
+
+  <h1>&nbsp<%=elemento.nombre%></h1>
+  </div>
+  <div class="col s10">
+  <div class="card">
+    <br>
+  <div class="row">
+
+    <div class="col s12 m6 l6">
+
+      <%=image_tag elemento.foto.url, class: "responsive-img", style:"length: 300px; border-style:solid; border-width:3px; border-color:#e0e0e0;" if elemento.foto?%>
+    </div>
+    <div style="text-align: justify; font-size: 30px; margin-right: 12px; margin-left: 12px;">
+      <p class="flow-text" ><%=simple_format(elemento.descripcion)%><p>
+    </div>
+
+    <div class="col s12">
+      &nbsp&nbsp
+      <%=link_to "Para más información: "+elemento.link, "//"+elemento.link , class: "btn btn-primary"%>
+    </div>
+  </div>
+
+  <br>
+</div>
+</div>
+</div>
+
+    <br>
+
+<%end%>
+</div>
+<br>

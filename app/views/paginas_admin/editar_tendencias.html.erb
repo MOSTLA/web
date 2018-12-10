@@ -1,0 +1,108 @@
+<div class="container">
+  <h1>Tendencias</h1>
+
+  <%  @tendencia = Tendencia.new %>
+
+
+  <div class="row">
+    <div class="col s12 m12 l9">
+    <ul class="collapsible">
+      <li>
+        <div class="collapsible-header">Haz click y agrega una tendencia</div>
+        <div class="collapsible-body">
+          <%= form_for @tendencia, url: tendencia_path do |f| %>
+          <div class="row">
+            <div class="col s12">
+                <h3>Nombre: </h3>
+              </div>
+
+                <div class="col s7">
+                <%= f.text_field :nombre, class: 'form-control', style: 'height: 50px; font-size:30px;' %>
+              </div>
+
+                <div class="col s12">
+                <h3> Abreviacion </h3>
+              </div>
+
+                <div class="col s7">
+                <%= f.text_field :abreviacion, class: 'form-control' , style: 'height: 50px; font-size:30px;'%>
+              </div>
+
+
+              <br>
+                <div class="col s12 m12 l12">
+                <%= f.file_field :imagen, class: 'form-control' %>
+              </div>
+                <br>
+                <div class="col s12">
+
+                <%= f.submit "Crear tendencia", class: "btn btn-primary" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </li>
+    </ul>
+  </div>
+  </div>
+
+          <script>
+                document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.collapsible');
+            var instances = M.Collapsible.init(elems, {});
+          });
+          </script>
+
+<br>
+
+  <%@tendencias.each do |tendencia|%>
+
+  <div class="card">
+    <%= form_for tendencia, url: tendencia_path+"/"+tendencia.id.to_s() do |f| %>
+
+    <div class="row">
+          <h3>Nombre:&nbsp </h3>
+
+          <div class="col s5">
+          <%= f.text_field :nombre, class: 'form-control', style: 'height: 50px; font-size:30px;' %>
+        </div>
+      </div>
+      <div class="row">
+          <h3> Abreviacion:&nbsp </h3>
+
+          <div class="col s5">
+          <%= f.text_field :abreviacion, class: 'form-control' , style: 'height: 50px; font-size:30px;'%>
+        </div>
+      </div>
+      <div class="row">
+
+          <div class="col s6 m3 l3">
+          <%=image_tag tendencia.imagen.url, class: "responsive-img", style:"height: 150px; width: 150px" if tendencia.imagen?%>
+        </div>
+        <div class="col s6 m6 l6">
+          <%= f.file_field :imagen, class: 'form-control' %>
+          </div>
+        </div>
+<div class="row">
+          <div class="col s12">
+
+          <%= f.submit "editar tendencia", class: "btn btn-primary" %>
+        </div>
+
+      </div> <br>
+
+    <% end %>
+  </div>
+  <div class="row">
+    <div class="col s12">
+
+    <%=link_to "ver elementos", '/admin/tendencia/'+tendencia.id.to_s() , class: "waves-effect waves-light brown darken-3 btn" %>
+    &nbsp
+    <%= link_to "delete", tendencia_path+"/"+tendencia.id.to_s(), method: :delete, class: "waves-effect waves-light brown darken-3 btn",
+                                  data: { confirm: "You are about to delete "+tendencia.nombre+" and all of its elements, are you sure?" } %>
+                                </div>
+      </div>
+      <br>
+
+  <%end%>
+</div>

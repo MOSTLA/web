@@ -1,0 +1,131 @@
+
+
+
+<br>
+<%if @proyecto.comentario!= nil && @proyecto.comentario.size>0%>
+<div class="row">
+  <div class="col s8 offset-s1">
+<h3>Comentario del admin (este comentario es privado)</h3>
+
+<div class="card"><%=simple_format(@proyecto.comentario)%></div>
+</div>
+</div>
+<%end%>
+<br>
+<br>
+<%= form_for @proyecto, url: proyectos_path+"/"+@proyecto.id.to_s() do |f| %>
+    <div class="row">
+
+      <div class="col offset-s1 s9">
+        <% if @proyecto.aprovado%>
+          <%= f.text_field :nombre, class: 'form-control ', style: 'color: green; font-size: 60px; height: 70px'%>
+          <%else%>
+          <%= f.text_field :nombre, class: 'form-control', style: 'color: red; font-size: 60px; height: 70px'%>
+
+          <%end%>
+      </div>
+    </div>
+    <div class='container'>
+    <div class="row">
+      <div class="col s12">
+      <h3> Contactos del proyecto </h3>
+    </div>
+    <div class="col offset-s1 s9">
+      <%= f.text_area :contactos, style: 'height: 220px', class: 'form-control' , placeholder: "Recomendamos que se escriban de esta manera: \n Name                 email@here.com \n Name2                email2@here.com"%>
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col s12">
+      <h3> Imagen</h3>
+    </div>
+    <div class="col offset-s1 s4">
+    <%=image_tag @proyecto.imagen.url, class: "responsive-img", id:"img_prev" if @proyecto.imagen?%>
+  </div>
+    <div class="col offset-s1 s4">
+      <%= f.file_field :imagen, class: 'form-control',onchange:"readURL(this);", accept: 'image/jpg,image/jpeg,image/gif,image/png'%>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s12">
+      <h3>  Descripción del proyecto </h3>
+    </div>
+    <div class="col offset-s1 s9">
+      <%= f.text_area :descripcion, style: 'height: 220px'%>
+    </div>
+  </div>
+  <div class="row">
+    <div class="s5">
+
+      <%= f.submit "Change project info", class: "btn btn-primary" %>
+<% end %>
+</div>
+</div>
+
+
+<h1>Comentarios</h1>
+<%  @comentario = Comentario.new %>
+
+<div class="row">
+  <div class="col s12 m12 l9">
+  <ul class="collapsible">
+    <li>
+      <div class="collapsible-header">Haz click y agrega un comentario</div>
+      <div class="collapsible-body">
+        <%= form_for @comentario, url: comentario_path do |f| %>
+        <div class="row">
+          <div class="col s5">
+              <h5>Nombre o Matrícula: </h5>
+                </div>
+                <div class="col offset-s1 s6">
+              <%= f.text_field :matricula, class: 'form-control' , style: 'height: 50px; font-size:30px;'%>
+        </div>
+        </div>
+        <div class="row">
+          <div class="col s12">
+              <h3> Comentario </h3>
+            </div>
+              <div class="col s12">
+              <%= f.text_area :comentario, size: "10x12"%>
+            </div>
+            </div>
+
+              <%= f.hidden_field :proyecto_id, value: @proyecto.id %>
+
+              <%= f.submit "Post", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </li>
+  </ul>
+</div>
+</div>
+
+        <script>
+              document.addEventListener('DOMContentLoaded', function() {
+          var elems = document.querySelectorAll('.collapsible');
+          var instances = M.Collapsible.init(elems, {});
+        });
+        </script>
+
+
+        <br>
+        <hr>
+        <br>
+
+<%@comentarios.each do |comentario|%>
+<div class="row">
+  <div class="col s12">
+  <h2><%=comentario.matricula%></h2>
+</div>
+  <div class="col offset-s1 s9 m9 l6">
+  <%=comentario.comentario%>
+  <br>
+</div>
+
+<%= link_to "delete", comentario_path+"/"+comentario.id.to_s(), class: "waves-effect waves-light brown darken-3 btn" , method: :delete,
+                              data: { confirm: "You are about to delete this comment, are you sure?" } %>
+</div>
+
+<%end%>
+
+</div>

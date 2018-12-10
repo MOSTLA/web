@@ -1,0 +1,46 @@
+<div class='container'>
+
+  <% @proyectos.each do |proyecto|%>
+  <div class="row">
+  <div class="col s12">
+  <h2 class="header"><%=proyecto.nombre%></h2>
+  <div class="col s12 m9 l5">
+    <%=image_tag proyecto.imagen.url, class: "responsive-img", style:"length: 300px; border-style:solid; border-width:3px; border-color:#e0e0e0;" if proyecto.imagen?%>
+
+  </div>
+  <%if proyecto.imagen?%>
+  <div class="col s12 m12 l7">
+    <%else%>
+    <div class="col s12 m12 l7">
+    <%end%>
+
+    <%if proyecto.porRevisar%>
+      <div class="card blue-grey lighten-5" style="border-style:double; border-width:4px; border-color:#d50000;">
+    <%elsif proyecto.aprovado%>
+      <div class="card blue-grey lighten-5" style="border-style:double; border-width:4px; border-color:#00c853;">
+    <%else%>
+      <div class="card blue-grey lighten-5" style="border-style:double; border-width:4px; border-color:#3e2723;">
+    <%end%>
+
+    <div class="card-stacked">
+      <p class = "flow-text" style="overflow: hidden; text-overflow: ellipsis;"><%=proyecto.descripcion[0..250] %>
+        <% if proyecto.descripcion.size > 250%>
+        ...
+        <%end%>
+      </p>
+      <div class="card-action" >
+        <%=link_to "mas informacion", '/admin/proyecto/'+proyecto.id.to_s(), class: "waves-effect waves-light brown darken-3 btn" %>
+        <%= link_to "delete", proyectos_path+"/"+proyecto.id.to_s(), method: :delete, class: "waves-effect waves-light brown darken-3 btn" ,
+                                      data: { confirm: "You are about to delete "+proyecto.nombre+" and all comments, are you sure?" } %>
+
+  </div>
+    </div>
+  </div>
+  </div>
+  </div>
+  </div>
+
+
+  <%end%>
+
+</div>

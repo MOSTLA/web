@@ -1,0 +1,40 @@
+<h1> <%=@tema.nombre %></h1>
+<div class="row">
+  <div class="col l9">
+  <table>
+        <thead>
+          <tr>
+            <%= form_for :tema, url: tema_path+"/add/"+@tema.id.to_s() do |f| %>
+
+              <th>Nueva slide</th>
+              <th> <%= f.file_field :imagen, class: 'form-control' %></th>
+              <th> <%= f.submit "Subir", class: "btn btn-primary" %></th>
+            <% end %>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <%@ppts.each do |ppt| %>
+            <%= form_for ppt, url: tema_path+"/change/"+@tema.id.to_s() do |f| %>
+
+                  <%= f.hidden_field :id, value: ppt.id %>
+
+
+                  <tr>
+                    <td>Pos:&nbsp <%= f.number_field :posicion, value: ppt.posicion, style: "width: 200px; font-size: 30px" %></td>
+                    <td>
+                      <%=image_tag ppt.imagen.url, class: "responsive-img", id:"img_prev", style:"max-width:400px" if ppt.imagen?%>
+                      <br> <%= f.file_field :imagen, class: 'form-control' %>
+                    </td>
+                    <td> <%= f.submit "modificar", class: "btn btn-primary" %></td>
+                    <td><%= link_to "eliminar", tema_path+"/slide/"+ppt.id.to_s(), method: :delete, class: "btn btn-primary",
+                                                  data: { confirm: "You are about to delete this slide, are you sure?" } %>
+                    </td>
+                  </tr>
+            <% end %>
+          <%end%>
+        </tbody>
+      </table>
+    </div>
+  </div>

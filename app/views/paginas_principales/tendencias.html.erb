@@ -1,0 +1,19 @@
+
+<br>
+<div class="row cyan lighten-5" >
+
+  <% @tendencias.each do |tendencia|%>
+
+  <a href="<%='/tendencia/'+tendencia.nombre.to_s()%>">
+    <div class="col s1 center-align" style= "color: #1a23e">
+       <blockquote>
+      <%=image_tag tendencia.imagen.url, class: "", style:"height: 70px; width: 100px" if tendencia.imagen?%>
+    <%=tendencia.abreviacion%>
+  </blockquote>
+    </div>
+  </a>
+
+
+  <%end%>
+
+</div>

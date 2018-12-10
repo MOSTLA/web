@@ -1,0 +1,174 @@
+<h1>Haz click donde quieras editar</h1>
+<div class="container">
+  <div class="row">
+    <div class="col s12">
+    <ul class="collapsible popout">
+              <%  @articulo = Articulo.new %>
+              <li>
+                <div class="collapsible-header">Agregar nuevo gadget...</div>
+                <div class="collapsible-body">
+              <%= form_for @articulo, url: articulo_path do |f| %>
+
+
+                    <div class="row">
+                    <div class="col s12">
+                      <h3> Nombre:</h3>
+                    </div>
+                    <div class="col offset-s1 s7">
+                    <%= f.text_field :nombre, class: 'form-control' , style: 'height: 50px; font-size:30px;'%>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col s12">
+                        <h3> Propietario</h3>
+                      </div>
+                      <div class="col offset-s1 s7">
+                    <%= f.text_field :propietario, class: 'form-control', style: 'height: 50px; font-size:30px;' %>
+                  </div>
+                  </div>
+
+                  <div class="row">
+                  <div class="col s12">
+                    <h3> Descripción del gadget</h3>
+                  </div>
+                  <div class="col offset-s1 s7">
+                    <%= f.text_area :descripcion, size: "10x12"%>
+                  </div>
+                </div>
+                <div class="row">
+                <div class="col s5">
+                    <h3> Imagen:</h3>
+                    <br>
+                    <%= f.file_field :imagen, class: 'form-control' %>
+
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col s7">
+                    <h3> Precio: &nbsp</h3>
+                    <%= f.number_field :precio, class: 'form-control' , style: 'height: 50px; font-size:30px;'%>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col s12">
+                    <label>
+                      <%= f.check_box :rentado %>
+                      <span> Solo selecciona esta casilla si el gadget no se podrá rentar </span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col s12">
+
+                    <%= f.submit "agregar gadget", class: "btn btn-primary" %>
+
+                  </div>
+                </div>
+              <% end %>
+            </div>
+
+              </li>
+
+              <%@articulos.each do |articulo|%>
+              <li>
+                <div class="collapsible-header">
+                  <div class="row">
+                    <div class="col s5">
+                      <%=image_tag articulo.imagen.url, class: "responsive-img" if articulo.imagen?%>
+                    </div>
+                    <div class="col s7 m4 l4">
+                      <%=articulo.nombre%>
+                    </div>
+                    <div class="col s5 m3 l3">
+                  <%= link_to "delete", articulo_path+"/"+articulo.id.to_s(), method: :delete, class: "waves-effect waves-light brown darken-3 btn",
+                                                data: { confirm: "You are about to delete all info from "+articulo.nombre+" are you sure?" } %>
+                    </div>
+                  </div>
+                </div>
+                <div class="collapsible-body">
+                  <%= form_for articulo, url: articulo_path+"/"+articulo.id.to_s() do |f| %>
+
+                    <div class="row">
+                    <div class="col s12">
+                        <h3> Nombre:</h3>
+                      </div>
+                      <div class="col offset-s1 s7">
+                      <%= f.text_field :nombre, class: 'form-control' , style: 'height: 50px; font-size:30px;'%>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col s12">
+                          <h3> Propietario</h3>
+                        </div>
+                        <div class="col offset-s1 s7">
+                      <%= f.text_field :propietario, class: 'form-control', style: 'height: 50px; font-size:30px;' %>
+                    </div>
+                    </div>
+
+                    <div class="row">
+                    <div class="col s12">
+                      <h3> Descripción del gadget</h3>
+                    </div>
+                    <div class="col offset-s1 s7">
+                      <%= f.text_area :descripcion, size: "10x12"%>
+                    </div>
+                  </div>
+                  <div class="row">
+                  <div class="col s5">
+                      <h3> Imagen:</h3>
+                      <br>
+                      <%= f.file_field :imagen, class: 'form-control' %>
+
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col s7">
+                      <h3> Precio: &nbsp</h3>
+                      <%= f.number_field :precio, class: 'form-control' , style: 'height: 50px; font-size:30px;'%>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col s12">
+                      <%if articulo.rentado || articulo.pedido%>
+                      <label>Libera este artículo de sus rentas y pedidos si quieres marcarlo como no rentable</label>
+                      <%else%>
+
+                      <label>
+                        <%= f.check_box :rentado %>
+                        <span> Solo selecciona esta casilla si el gadget no se podrá rentar </span>
+                      </label>
+
+                      <%end%>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col s12">
+
+                      <%= f.submit "Editar gadget", class: "btn btn-primary" %>
+                    </div>
+                  </div>
+
+                <% end %>
+                                          </div>
+                                                  </li>
+
+              <%end%>
+  </ul>
+  </div>
+  </div>
+</div>
+
+<script>
+      document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.collapsible');
+  var instances = M.Collapsible.init(elems, {});
+});
+</script>

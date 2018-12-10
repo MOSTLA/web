@@ -1,0 +1,2 @@
+module PaginasAdminHelper
+end

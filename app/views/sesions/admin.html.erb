@@ -1,0 +1,30 @@
+<br>
+<br>
+<div class="row">
+  <div class="col s12 m8 l6 offset-m2 offset-l3">
+    <div class="card">
+      <div class="row">
+        <div class="col offset-s1">
+<%= form_for(:sesion, url: login_path) do |f| %>
+
+      <h3> Name: </h3>
+      <%= f.text_field :name, class: 'form-control', style: 'font-size: 30px;' %>
+
+      <h3> Password: </h3>
+      <%= f.password_field :password, class: 'form-control', style: 'font-size: 30px;' %>
+
+      <%= f.label :remember_me, class: "checkbox inline" do %>
+        <%= f.check_box :remember_me %>
+        <span>Remember me on this computer</span>
+      <% end %>
+
+      <%= f.submit "Log in", class: "btn btn-primary", style: "font-size: 20px" %>
+    <% end %>
+  </div>
+  </div>
+</div>
+</div>
+</div>
+<br>
+<br>
+<br>

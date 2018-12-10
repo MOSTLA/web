@@ -1,0 +1,38 @@
+@import "materialize/components/color-variables";
+$primary-color: color("grey", "darken-2") !default;
+$secondary-color: color("white", "base") !default;
+@import 'materialize';
+
+@font-face {
+  font-family: 'baloo';
+  src:url('/assets/Baloo-Regular.ttf');
+  src:url('/assets/Baloo-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+i.icon-grey {
+    color:grey;
+}
+i.icon-white {
+    color:white;
+}
+body {
+  font-family: 'baloo';
+  font-size: 30px;
+}
+textarea {
+  height: 220px;
+
+}
+input {
+  font-size: 30px;
+  height: 50px;
+}
+nav ul{
+  padding-top: 10px;
+}
+.card-stacked p{
+  margin-left: 5%;
+}

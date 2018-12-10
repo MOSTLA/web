@@ -1,0 +1,22 @@
+<br>
+<br>
+<div class="container">
+<% @user = current_user %>
+<%= form_for @user, url: usuarios_path+"/"+@user.id.to_s() do |f| %>
+
+      <h3> Name: </h3>
+      <%= f.text_field :name, class: 'form-control' , style: 'font-size: 30px;'%>
+
+      <h3> Email: </h3>
+      <%= f.email_field :email, class: 'form-control', style: 'font-size: 30px;' %>
+
+      <h3> Password:</h3>
+      <%= f.password_field :password, class: 'form-control', style: 'font-size: 30px;' %>
+
+      <h3> Password confirmation </h3>
+      <%= f.password_field :password_confirmation, class: 'form-control' , style: 'font-size: 30px;'%>
+
+
+      <%= f.submit "Edit my account", class: "btn btn-primary" %>
+    <% end %>
+</div>

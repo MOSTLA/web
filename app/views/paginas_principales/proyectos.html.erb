@@ -1,0 +1,37 @@
+<div class='container'>
+
+  <% @proyectos.each do |proyecto|%>
+  <div class="row">
+  <div class="col s12">
+  <h2 class="header"><%=proyecto.nombre%></h2>
+  <div class="col s12 m9 l5">
+    <%=image_tag proyecto.imagen.url, class: "responsive-img", style:"length: 300px; border-style:solid; border-width:3px; border-color:#e0e0e0;" if proyecto.imagen?%>
+
+  </div>
+  <%if proyecto.imagen?%>
+  <div class="col s12 m12 l7">
+    <%else%>
+    <div class="col s12 m12 l7">
+    <%end%>
+
+    <div class="card blue-grey lighten-5">
+
+    <div class="card-stacked">
+      <p class = "flow-text" style="overflow: hidden; text-overflow: ellipsis;"><%=proyecto.descripcion[0..250] %>
+        <% if proyecto.descripcion.size > 250%>
+        ...
+        <%end%>
+      </p>
+      <div class="card-action" >
+        <%=link_to "Más información", '/proyecto/'+proyecto.nombre , class: "waves-effect waves-light brown darken-4 btn"%>
+    </div>
+    </div>
+  </div>
+  </div>
+  </div>
+  </div>
+
+
+  <%end%>
+
+</div>

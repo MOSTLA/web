@@ -1,0 +1,97 @@
+<ul id="dropdown" class="dropdown-content">
+ <li><a href="/nosotros" class="waves-effect waves-light grey darken-2 lighten-5">Nosotros</a></li>
+ <li><a href="/contactos" class="waves-effect waves-light grey darken-2 lighten-5">Contactos</a></li>
+
+</ul>
+<ul id="dropdown2" class="dropdown-content">
+ <li><a href="/nosotros" class="waves-effect waves-light grey darken-2 lighten-5">Nosotros</a></li>
+ <li><a href="/contactos" class="waves-effect waves-light grey darken-2 lighten-5">Contactos</a></li>
+
+</ul>
+
+<ul id="dropdown3" class="dropdown-content">
+ <li><a href="/admin/gadgets" class="waves-effect waves-light grey darken-2 lighten-5">Editar gadgets</a></li>
+ <li><a href="/admin/gadgets_pedidos" class="waves-effect waves-light grey darken-2 lighten-5">Gadgets pedidos</a></li>
+ <li><a href="/admin/gadgets_en_renta" class="waves-effect waves-light grey darken-2 lighten-5">Gadgets en renta</a></li>
+ <li><a href="/admin/proyectos" class="waves-effect waves-light grey darken-2 lighten-5">Ver proyectos</a></li>
+ <li><a href="/admin/tendencias" class="waves-effect waves-light grey darken-2 lighten-5">Cambiar tendencias</a></li>
+ <li><a href="/admin/temas" class="waves-effect waves-light grey darken-2 lighten-5">Presentaciones</a></li>
+ <li><a href="/admin/users" class="waves-effect waves-light grey darken-2 lighten-5">Derechos usuarios</a></li>
+</ul>
+
+<ul id="dropdown4" class="dropdown-content">
+ <li><a href="/admin/gadgets" class="waves-effect waves-light grey darken-2 lighten-5">Editar gadgets</a></li>
+ <li><a href="/admin/gadgets_pedidos" class="waves-effect waves-light grey darken-2 lighten-5">Gadgets pedidos</a></li>
+ <li><a href="/admin/gadgets_en_renta" class="waves-effect waves-light grey darken-2 lighten-5">Gadgets en renta</a></li>
+ <li><a href="/admin/proyectos" class="waves-effect waves-light grey darken-2 lighten-5">Ver proyectos</a></li>
+ <li><a href="/admin/tendencias" class="waves-effect waves-light grey darken-2 lighten-5">Cambiar tendencias</a></li>
+ <li><a href="/admin/temas" class="waves-effect waves-light grey darken-2 lighten-5">Presentaciones</a></li>
+ <li><a href="/admin/users" class="waves-effect waves-light grey darken-2 lighten-5">Derechos usuarios</a></li>
+</ul>
+
+<nav class="grey lighten-4" style="height: 90px;">
+   <div class="nav-wrapper">
+
+     <a href=<%=root_url%> class="brand-logo">  <img class="responsive-img"  style="height: 85px; " src="/assets/mostlaLogo.png"></a>
+     <button  data-target="mobile-demo" class="sidenav-trigger hide-on-large-only"><i class="material-icons icon-grey">menu</i></button>
+     <ul class="right hide-on-med-and-down">
+
+       <%if logged_in?%>
+       <%if is_admin?%>
+       <li><a class="dropdown-trigger waves-effect waves-light grey darken-2  btn" data-target="dropdown3">Admin<i class="material-icons right">arrow_drop_down</i></a>
+       </li>
+       <%end%>
+       <li><a href="/mis_proyectos" class="waves-effect waves-light grey darken-2  btn">Mis Proyectos</a>
+       </li>
+       <%end%>
+       <li><a href="/proyectos" class="waves-effect waves-light grey darken-2  btn">Nuestros Proyectos</a></li>
+       <li><a href="https://mostla.tec.mx/sistema-reservas.html" class="waves-effect waves-light grey darken-2 lighten-5 btn">Renta de Artículos</a></li>
+       <li><a href="/gadgets" class="waves-effect waves-light grey darken-2 btn">Renta de Artículos2</a></li>
+       <li><a class="dropdown-trigger waves-effect waves-light grey darken-2  btn" data-target="dropdown2">MOSTLA<i class="material-icons right">arrow_drop_down</i></a></li>
+       <%if logged_in?%>
+       <li><%= link_to "Logout", logout_path, method: :delete, class: "waves-effect waves-light grey darken-2 btn",
+                                     data: { confirm: "You are about to logout" } %>
+       </li>
+       <%end%>
+     </ul>
+   </div>
+ </nav>
+
+
+ <ul class="sidenav" id="mobile-demo">
+   <%if logged_in?%>
+   <%if is_admin?%>
+   <li><a class="dropdown-trigger waves-effect waves-light grey darken-2 lighten-5 btn " data-target="dropdown4">Admin<i class="large material-icons right con-white">arrow_drop_down</i></a></li>
+
+   <%end%>
+
+   <li><a href="/mis_proyectos" class="waves-effect waves-light grey darken-2  btn">Mis Proyectos</a>
+   </li>
+   <%end%>
+   <li><a href="/proyectos" class="waves-effect waves-light grey darken-2 lighten-5 btn">Nuestros Proyectos</a></li>
+   <li><a href="https://mostla.tec.mx/sistema-reservas.html" class="waves-effect waves-light grey darken-2 lighten-5 btn">Renta de Artículos</a></li>
+   <li><a href="/gadgets" class="waves-effect waves-light grey darken-2 lighten-5 btn ">Renta de Artículos2</a></li>
+   <li><a class="dropdown-trigger waves-effect waves-light grey darken-2 lighten-5 btn " data-target="dropdown">MOSTLA<i class="large material-icons right con-white">arrow_drop_down</i></a></li>
+   <%if logged_in?%>
+   <li><%= link_to "Logout", logout_path, method: :delete, class: "waves-effect waves-light grey darken-2 btn",
+                                 data: { confirm: "You are about to logout" } %>
+   </li>
+   <%end%>
+ </ul>
+
+
+
+
+ <script>
+   document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.sidenav');
+      var instances = M.Sidenav.init(elems, {});
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+   var elems = document.querySelectorAll('.dropdown-trigger');
+   var instances = M.Dropdown.init(elems, {});
+ });
+
+
+ </script>

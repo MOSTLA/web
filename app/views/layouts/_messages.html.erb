@@ -1,0 +1,6 @@
+
+<script>
+  <% flash.each do |name, msg| %>
+    M.toast({html: "<%= msg %>", classes: '<%=name%>'});
+  <% end %>
+</script>

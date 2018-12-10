@@ -1,0 +1,150 @@
+<style>
+	.text-block {
+	    position: absolute;
+	    bottom: 20px;
+	    right: 20px;
+	    background-color: transparent;
+	    color: white;
+	    opacity:100%;
+	    padding-left: 20px;
+	    padding-right: 20px;
+	    margin-top: 30px;
+	    opacity: 0.6;
+	}
+
+	.opacity {
+		opacity: 0.5;
+	}
+
+	.centered {
+	    position: absolute;
+	    top: 42%;
+	    left: 50%;
+	    transform: translate(-100%, -50%);
+	}
+
+	.font {
+		font-family: Impact, Charcoal, sans-serif;
+	}
+
+	.font2 {
+		font-family: Comic Sans MS, cursive, sans-serif;
+	}
+
+	.center {
+	    display: block;
+	    margin-left: auto;
+	    margin-right: auto;
+	    width: 50%;
+	    height: 50%;
+	}
+	.video{
+		position:absolute;
+		width: 50%;
+		height: 30%;
+		max-width: 70%;
+		max-height: 50%;
+		align-content: center;
+		display: block;
+ 		left: 25%;
+
+	}
+
+	.fontSize2{
+		font-size:2vw;
+	}
+
+	.fontSize1{
+		font-size:1vw;
+	}
+
+</style>
+<div class="row">
+<div class ="col s12">
+      <img src="assets/pagPrincipal1.png" class="opacity" style="max-height: 600px ; width: 100%" >
+      <div class="text-block centered responsive-img" style="background-color:transparent; position:absolute;  opacity:100%; text-align: center; color:black; ">
+        <h1 style="text-shadow: 2px 2px grey; font-size:3vw; font-weight: bold;">Tecnologías Educativas Emergentes</h1>
+        <h5 style="text-shadow: 1px 1px grey; font-size:2vw; font-weight: bold;">Un espacio dirigido a maestros y estudiantes para conocer y experimentar las tecnologías más innovadoras, con el propósito de redefinir la educación y el aprendizaje.</h5>
+      </div>
+    </div>
+		</div>
+
+  <ul class="sidenav left" id="mobile">
+      <li class="nav-item">
+            <a class="waves-effect waves-light #616161 grey darken-2 btn" href="new">Create New</a>
+      </li>
+      <li class="nav-item">
+            <a class="waves-effect waves-light #616161 grey darken-2 btn" href="contact">Contact</a>
+      </li>
+      <li class="nav-item">
+            <a class="waves-effect waves-light #616161 grey darken-2 btn" href="about">About us</a>
+      </li>
+  </ul>
+
+
+	<div class="row cyan lighten-5" style="height:180px; overflow: auto" >
+
+	  <% @tendencias.each do |tendencia|%>
+
+	  <a href="<%='/tendencia/'+tendencia.nombre.to_s()%>">
+	    <div class="col s4 m3 l2 center-align flow-text" style= "color: #1a23e; ">
+	       <blockquote>
+	      <%=image_tag tendencia.imagen.url, class: "responsive-img", style:"height: 90px; max-width: 120px; width: 100%" if tendencia.imagen?%>
+				<br>
+			<%=tendencia.abreviacion%>
+	  </blockquote>
+	    </div>
+	  </a>
+
+
+	  <%end%>
+
+	</div>
+
+	<h4 class="indigo-text text darken-4 font center fontSize2">Nuestro Video</h4>
+	<div class="video-container responsive-video" style="margin-top: 3vw; margin-left: 22vw;">
+		<iframe class="video center" src="http://www.youtube.com/embed/4z7mEolwvI4">
+		</iframe>
+	</div>
+
+
+<section class="container section" id="cont">
+	<div class="row">
+		<div class="col s12 m6">
+			<img src="assets/pagPrincipal1.png" alt="" class="responsive-img">
+		</div>
+		<div class="col s12 m6 font push-m1">
+			<h5 class="indigo-text text darken-4 font fontSize2">Sobre Mostla</h5>
+			<h4 class="fontSize2">En lenguaje náhuatl significa mañana</h4>
+			<p class="font2 fontSize1">Es un espacio dirigido a profesores y estudiantes, en el que se puede conocer y experimentar las tecnologías más innovadoras, con el objetivo de:</p>
+			<ul class="font2 fontSize2">
+				<li class="fontSize1">
+					► Redefinir la enseñanza
+				</li>
+				<li class="fontSize1">
+					► Mejorar el aprendizaje
+				</li>
+				<li class="fontSize1" >
+					► Conocer tendencias tecnológicas
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="row" style="padding-top: 7vw; padding-bottom: 3vw;">
+		<div class="col s12 m6 push-l7">
+			<img src="assets/pagPrincipal2.png" alt="" class="responsive-img">
+		</div>
+		<div class="col s12 m6 font pull-l6 right-align">
+			<h5 class="indigo-text text darken-4 font fontSize2">Nuestra identidad</h5>
+			<h4 class="fontSize2">Planteamos soluciones con tecnologías emergentes</h4>
+			<p class="font2 fontSize1">El futuro de la educación está en incorporar nuevas tecnologías en el modelo educativo, y en Campus Monterrey ya existe un lugar donde tanto profesores y estudiantes pueden experimentarlas para conocerlas a fondo.</p>
+		</div>
+	</div>
+
+
+	<div class="center font fontSize1 fontFooter">
+		<p class="font2" style="width: 100%">En Mostla, tanto estudiantes como docentes pueden acercarse a las ten­dencias tecnológicas que actualmente cam­bian al mundo en áreas como realidad virtual, inteligencia artificial, internet de las cosas, entre otras, y pensar cómo implementarlas en clase o un proyecto especial.</p>
+	</div>
+
+</section>

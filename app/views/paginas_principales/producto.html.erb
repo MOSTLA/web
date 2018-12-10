@@ -1,0 +1,26 @@
+
+<h1><%=@articulo.nombre%></h1>
+<%=@articulo.propietario%>
+<%=image_tag @articulo.imagen.url, class: "responsive-img", style:"length: 400px; border-style:solid; border-width:3px; border-color:#e0e0e0;" if @articulo.imagen?%>
+
+<%=@articulo.descripcion%>
+<%=@articulo.precio%>
+<% if @articulo.rentado%>
+  <%if @articulo.ultimoPedido == nil %>
+    este articulo no se puede sacar de MOSTLA
+  <%else%>
+    este articulo lo tiene otro compañero
+  <%end%>
+<% elsif @articulo.pedido%>
+  este articulo ya fue pedido por <%=@articulo.ultimoPedido%>
+<%else%>
+  <%= form_for :renta, url: '/renta_gadget/'+@articulo.id.to_s() do |f| %>
+
+        <%= f.label :matricula, "Escribe tu matricula con A..." %>
+        <%= f.text_field :matricula, class: 'form-control' %>
+
+
+
+        <%= f.submit "pedir", class: "btn btn-primary" %>
+  <% end %>
+<%end%>

@@ -1,0 +1,22 @@
+<div class="container">
+<% @users = Usuario.all%>
+<% @users.each do |usuario| %>
+    <%if current_user.id != usuario.id%>
+      <h1><%= usuario.name%>    </h1> <h4><%= usuario.email%></h4>
+      <%= form_for usuario, url: admin_path do |f| %>
+        <%= f.hidden_field :id, value: usuario.id%>
+
+        <label>
+          <%= f.check_box :admin %>
+          <span> </span>
+        </label>
+
+
+        <%= f.submit "Change admin priviliges", class: "btn btn-primary" %>
+      <% end %>
+      <%= link_to "delete", usuarios_path+"/"+usuario.id.to_s(), method: :delete,
+                                    data: { confirm: "You are about to delete "+usuario.name+", are you sure?" } %>
+
+    <%end%>
+<%end%>
+</div>

@@ -1,0 +1,70 @@
+
+<div class= "container">
+
+  <%contador=0%>
+
+  <% @articulos.each do |articulo|%>
+  <a name="<%=articulo.nombre%>"></a>
+  <div class="card" >
+    <h1 class="<%= "right-align" if contador%2==1%>"><%=articulo.nombre%></h1>
+
+    <div class="row">
+
+
+      <div class="col s12 m6 l6 <%= "push-m6 push-l6" if contador%2==1%>">
+        <%=image_tag articulo.imagen.url, class: "responsive-img", style:"length: 250px; border-style:solid; border-width:3px; border-color:#e0e0e0;" if articulo.imagen?%>
+
+      </div>
+
+        <div class ="col <%= "pull-m6 pull-l6" if contador%2==1%>">
+        <%=articulo.descripcion%>
+        <br> De: &nbsp
+        <%=articulo.propietario%>
+        </div>
+
+
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <ul class="collapsible">
+            <li>
+              <div class="collapsible-header"><%="Precio: "+articulo.precio.to_s+"$" if articulo.precio>0%>&nbsp Renta aquí
+              </div>
+              <div class="collapsible-body">
+                <% if articulo.rentado%>
+                  <%if articulo.ultimoPedido == nil %>
+                    Este artículo no se puede sacar de MOSTLA
+                  <%else%>
+                    Este artículo lo tiene otro compañero
+                  <%end%>
+                <% elsif articulo.pedido%>
+                  Este artículo ya fue pedido por <%=articulo.ultimoPedido%>
+                <%else%>
+                  <%= form_for :renta, url: '/renta_gadget/'+articulo.id.to_s() do |f| %>
+
+                        <%= f.label :matricula, "Escribe tu matricula con A..." %>
+                        <%= f.text_field :matricula, class: 'form-control' %>
+
+
+
+                        <%= f.submit "pedir", class: "btn btn-primary" %>
+                  <% end %>
+                <%end%>
+              </div>
+            </li>
+          </ul>
+      </div>
+    </div>
+    <%contador+=1%>
+  </div>
+    <br>
+  <%end%>
+
+</div>
+
+<script>
+      document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.collapsible');
+  var instances = M.Collapsible.init(elems, {});
+});
+</script>
